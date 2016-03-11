@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Twitch Odyssey</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+<link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <ul class="pages">
+    <li class="chat page" id="grab">
+		<div id="rtmpfeed">Loading the player...</div>
+	<!--
+	<center><table><tr><td><div id="rtmpfeed">Loading the player...</div></td>
+	</tr>
+ <tr><td>
+</td><td><br><ul>
+  <% files.forEach(function(file) { %>
+      <li><a href='uploaded/files/<%= file %>'><%= file %></a></li>
+    <% }); %>
+</ul></td></tr></table></center>
+-->
+      <div class="chatArea">
+        <ul class="messages"></ul>
+      </div>
+      <input class="inputMessage" placeholder="Type here..."/>
+	</li>
+	<li class="login page">
+		<div class="form">
+	<h1><i>Twitch Odyssey</i></h1>  <br><h3>Work-in-Progress</h3>
+
+<br><br>
+  <h3>Twitch Odyssey test: a live streamed performance on Twitch.tv</h3>
+        <br><br><br><a href="/instructions">SUBMIT HERE</a>
+	<br><br><br><h3 class="title">What's your nickname?</h3>
+        <input class="usernameInput" type="text" maxlength="14" />
+      
+<br><br>
+
+Thanks for playing.
+
+	</div>
+	
+    </li>
+  </ul>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="socket.io/socket.io.js"></script>
+  <script src="/javascripts/main.js"></script>
+  <script src="/javascripts/jwplayer/jwplayer.js"></script>
+<script>jwplayer.key="hKr0It8yDiMnKte/Cy3p9KDJ74XfRooWYAiO8A==";</script>
+<script>
+var w = window.innerWidth;
+var h = window.innerHeight;
+
+var playerInstance = jwplayer("rtmpfeed");
+playerInstance.setup({
+	file: "rtmp://danmnet.ucsc.edu/live/twitchodyssey",
+	//height: 650,
+	//width: 1200
+	width: w * .5,
+	height: h * .5
+});
+</script>
+</body>
+</html>

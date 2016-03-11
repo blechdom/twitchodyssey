@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+	<head>
+  		<meta charset="UTF-8">
+  		<title>Twitch Odyssey</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+		<link rel="stylesheet" href="/stylesheets/style.css">
+  		<script src="socket.io/socket.io.js"></script>
+ <!--
+ <td>OBS Custom ServerSetup URL:
+  <br>rtmp://danmnet.ucsc.edu/live
+  <br>Stream Key: twitchodyssey "</td></tr>
+-->
+<style>
+@font-face {
+   font-family: myFirstFont;
+   src: url(/stylesheets/font_Caligo1.0.ttf);
+}
+div {
+   font-family: myFirstFont;
+}
+h1 {
+    font-size: 96px;
+  font-family: myFirstFont;
+  margin-bottom: -50px;
+  margin-top: 0px;
+}
+h2 {
+    font-size: 42px;
+  font-family: myFirstFont;
+  margin-bottom:  15px;
+}
+h3 {
+    font-size: 36px;
+  font-family: myFirstFont;
+  margin-bottom:  15px;
+}
+h3 {
+    font-size: 18px;
+  font-family: myFirstFont;
+  margin-bottom:  15px;
+}
+.thumbnail_container {
+     position: relative;
+     width: 100%;
+     padding-bottom: 100%; <!-- matching this to above makes it square -->
+     float:left;
+}
+
+.thumbnail {
+    position:absolute;
+    width:100%;
+    height:100%;
+}
+.thumbnail img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.hoverOver {
+    /*border-style: solid;
+    border-width: medium;
+    border-color: blue;
+    *//*position: relative;*/
+    visibility: hidden;
+}
+.locked {
+  opacity: 0.4;
+  filter: alpha(opacity=40); /* msie */
+}
+.chatLine {
+  margin-left: 100px;
+}
+
+img{
+    max-height:100%;
+    max-width:100%;
+}
+.submit{
+	font-size: 34px;
+}
+</style>
+
+</head>
+<body background="/images/newwhite.png">
+  <ul class="pages">
+    <li class="chat page">
+	<div class="row">
+		<div class="col-sm-12" style="background-color:#000">
+			<center>			
+				<div id="rtmpfeed">Loading the player...</div>
+			</center>
+		</div>
+	</div>
+	<div class="row" style="max-height:50%; min-height:50%; height:50%">
+		<div class="col-sm-6" id="thumbs_temp" style="overflow-y:auto; max-height:100%; min-height:100%; height:100%;">
+			<div class="container-fluid">
+				<div class="row" id="grab">
+  					<% files.forEach(function(file) { %>
+      						<div class="col-md-3 col-sm-3 col-xs-3">
+    							<div class="thumbnail_container">
+      								<div class="thumbnail">
+                    							<img src='thumbnails/<%= file %>' id='<%= file %>' style="max-height:100%">
+    								</div>
+    							</div>
+    						</div>
+    					<% }); %>
+      				</div>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div style="float:left;width:100px;border-right:1px solid black;padding:10px;overflow:scroll-y;">
+        			<b>USERS</b>
+        			<div id="users"></div>
+			</div>	
+			<div class="chatArea">
+       				<ul class="messages"></ul>		
+			</div>
+      			<input class="inputMessage" placeholder="Type here..."/>
+		</div>
+	</div>
+    </li>
+	
+    <li class="login page">
+	<div class="form">
+		<h1><i>Twitch Odyssey</i></h1><br><br><h3 class="title">Work-in-Progress</h3>
+		<br><br>
+  		<h1>Twitch Odyssey</h1><h2> A Live Stream Performance</h2> <br><br><br><br><br><br><h2> Next Show: March 9 @2:30 pst</h2>
+        	<br><br><br><!--<a href="/instructions" class="submit">SUBMIT HERE -->  </a>
+		<h2>The Theater</h2>
+        	<input class="usernameInput" type="text" maxlength="14" />
+      		<h4>To enter the theater, choose a chat name and press "return"</h4>
+		<br><br><br><br><br><br><br><br>
+		<h3>MADE BY:  KRISTIN ERICKSON, HOPE HUTMAN, TOM JOHNSON AND MATTHEW ZIMMERMAN</h3>
+	</div>
+    </li>
+  </ul>
+
+<script src="/javascripts/jwplayer/jwplayer.js"></script>
+<script src="/javascripts/main.js"></script>
+<script>jwplayer.key="hKr0It8yDiMnKte/Cy3p9KDJ74XfRooWYAiO8A==";</script>
+<script>
+	function thumbClickTest() {
+    		console.log("thumb test");
+	}
+</script>
+<script>
+/*var w = window.innerWidth;
+var h = window.innerHeight;
+
+var playerInstance = jwplayer("rtmpfeed");
+playerInstance.setup({
+        file: "rtmp://danmnet.ucsc.edu/live",
+        //height: 650,
+        //width: 1200
+      //  width: w * .5,
+        height: h * .5,
+	autostart: true, 
+	controls: false, 
+	
+});*/
+</script>
+</body>
+</html>

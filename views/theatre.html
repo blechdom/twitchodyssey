@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Twitch Odyssey</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <ul class="pages">
+    <li class="chat page">
+	<center><table><tr><td><div id="rtmpfeed">Loading the player...</div></td>
+	<td>OBS Custom ServerSetup URL:
+	<br>rtmp://danmnet.ucsc.edu/live
+	<br>Stream Key: twitchodyssey "</td></tr>
+ <tr><td>
+        <div id="videofeed">Loading the player...</div></td>
+<td><br><ul>
+  <% files.forEach(function(file) { %>
+      <li><a href='uploaded/files/<%= file %>'><%= file %></a> <a href="sendfilename">cue</a></li>
+    <% }); %>
+</ul></td></tr></table></center>
+      <div class="chatArea">
+        <ul class="messages"></ul>
+      </div>
+      <input class="inputMessage" placeholder="Type here..."/>
+    
+	</li>
+    	<li class="login page">
+      		<div class="form">
+  		<h1><i>Twitch Odyssey</i></h1>  <br><h3>Work-in-Progress</h3>
+
+<br><br>
+  <h3>Twitch Odyssey test: a live streamed performance on Twitch.tv</h3>   On a specific day and time, Homer will improvise a narrative based on the content that streams before him. The content for the stream is made by you, the audience/player/content maker.  It can be anonymous, or not.  You can work alone or with family or friends.   <br><br><br>
+        <h3 class="title">What's your nickname?</h3>
+        <input class="usernameInput" type="text" maxlength="14" />
+      
+<br><br>
+ <h3>Audience Instructions</h3>   <h3>Week One: Desire, Longing and Fate</h3> <br>
+   1.  If you are participating as a group: Sitting or standing, in a circle, or not, read the quote below.<br> “Ah how shameless—the way these mortals blame the gods.  From us alone, they say, come all their miseries, yes, but they themselves, with their own reckless ways, compound their pains beyond their proper share. “ <br>  Now, each person in the group reads two or three words aloud and then the next person reads and so on. You may need to print this out, or look at it on your phone or pass the computer around.  Practice a couple of times until you feel it has the flow and rhythm that you like.  <br><br> If you are participating without a group:  Read the quote out loud several times and in different ways. <br><br>When you are ready, record the reading, audio only, and email it to twitchodyssey@gmail.com
+<br><br>
+     <br><br>
+
+
+    2.   Storytelling I <br>
+    If you are a group:  One person begins by choosing one word from the quote above.  Now, beginning with that word, take turns telling a story, making up what comes next, with each player saying one to four words at a time as the story travels around the circle.  If you are participating  without a group, choose one word from the quote and write a quick paragraph or story.  Don't over think it, just write whatever pops in your head.  Make an audio recording and send it to twitchodyssey@gmail.com<br><br>
+
+
+    3. Storytelling II <br> Here is a video clip that could become part of our performance stream: <a href="uploaded/files/DLF6.mp4" target="closeup">Sirens</a><br>
+    Add another clip that could go either before or after the shared clip.(You can drag and drop this into the box below or upload it by clicking on the box) There are no rules or expectations as to what comes next, or before.  All the clips made will be added to the stream and during the performance the audience will have a say in the order that the clips stream.
+    Guidelines for making your clip:  You can repurpose other content or make something completely original.  If you are using someone else’s content, you must modify it in someway and cite where it’s from.(for now email your citations to twitchodyssey.com)  Maximum length 30 seconds.
+
+
+
+
+<br><br><br>
+  <hr/>
+
+
+<a href="/files" target="closeup">see uploaded videos</a><br><br>
+<a href="https://www.surveymonkey.com/r/RZZ3SR8" target="closeup">Take the Survey?</a><br> The streamed work-in-progress is planned for early January 2016. <br> Thanks for playing.
+
+	</div>
+	
+    </li>
+  </ul>
+
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="socket.io/socket.io.js"></script>
+  <script src="/javascripts/main.js"></script>
+  <script src="/javascripts/jwplayer/jwplayer.js"></script>
+<script>jwplayer.key="hKr0It8yDiMnKte/Cy3p9KDJ74XfRooWYAiO8A==";</script>
+<script>
+
+var playerInstance = jwplayer("rtmpfeed");
+playerInstance.setup({
+	file: "rtmp://danmnet.ucsc.edu/live/twitchodyssey",
+	height: 360,
+	width: 640
+});
+var playerInstance = jwplayer("videofeed");
+playerInstance.setup({
+        file: "rtmp://danmnet.ucsc.edu/live/twitchcontent",
+        height: 180,
+        width: 320
+});
+</script>
+</body>
+</html>

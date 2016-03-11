@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Content</title>
+
+<!-- <link rel="stylesheet" href="style.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="socket.io/socket.io.js"></script>
+
+<style>
+@font-face {
+   font-family: myFirstFont;
+   src: url(/stylesheets/font_Caligo1.0.ttf);
+}
+.caligo {
+   font-family: myFirstFont;
+	padding-left: 50px;
+
+}
+.paddingh3
+{
+	padding-left: 50px;
+}
+@font-face {
+   font-family: myFont;
+   src: url(/stylesheets/OpenSans-Regular.ttf);
+}
+div {
+   font-family: myFont;
+}
+h1 {
+    font-size: 68px;
+  font-family: myFirstFont;
+  margin-bottom: -35px;
+  margin-top: 0px;
+}
+h2 {
+    font-size: 42px;
+  font-family: myFirstFont;
+  margin-bottom:  15px;
+  padding-left: 50px;
+}
+h3 {
+    	font-size: 28px;
+	font-family: myFont;	
+}
+h4 {
+  font-size: 38px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: myFont;
+}
+</style>
+</head>
+<body background="/images/newwhite.png">
+<div id="contentfeed"></div>	
+<script>
+	// console.log("in the content page");
+</script>
+<script src="/javascripts/jwplayer/jwplayer.js"></script>
+<script>jwplayer.key="hKr0It8yDiMnKte/Cy3p9KDJ74XfRooWYAiO8A==";</script>
+<script>
+var w = window.innerWidth;
+var h = window.innerHeight;
+var pause = false;
+var nextVid = "";
+var randomSkip = false;
+var choiceReady = false;
+var startTime = 0;
+
+var playerInstance = jwplayer("contentfeed");
+playerInstance.setup({
+  file: "/uploaded/files/Awesome%20animation.mp4",
+  //height: 650,
+  //width: 1200
+  controls: false,
+  autostart : true,
+  autoplay : true,
+  repeat : true,
+	width: w, // * .5,
+	height: h        
+});
+
+playerInstance.onComplete(function() {
+  // console.log('complete');
+  socket.emit('playNext', '');
+});
+
+playerInstance.onTime(function() {
+  // console.log('time');
+  if (randomSkip) {
+    // start random
+    var time = playerInstance.getDuration();
+    // console.log("duration " + time);
+    if (time > 8) {
+      var skip = Math.random() * (time - 8);
+      startTime = skip;
+      console.log("skip " + skip)
+      playerInstance.seek(skip);
+    } else {
+      startTime = 0;
+    }
+    randomSkip = false;
+  }
+  // console.log(playerInstance.getPosition());
+  var position = playerInstance.getPosition();
+  var elapsed = position - startTime;
+  // console.log(startTime, position, elapsed);
+  if (elapsed > 8 && choiceReady) {
+    console.log('switching from elapsed time');
+    socket.emit('playNext', '');
+    choiceReady = false;
+  }
+});
+// playerInstance.play();
+
+// Initialize variables
+var socket = io();
+
+// socket.on('jwplayerVideo', function (data) {
+//   changeVideo(data);
+// });
+
+socket.on('pause', function (data) {
+  if (!pause) {
+    playerInstance.pause();
+    console.log(data);
+    pause = true;
+  }
+});
+
+
+socket.on('unpause', function (data) {
+  if (pause) {
+    playerInstance.play();
+    console.log(data);
+    pause = false;
+    if (nextVid.length != 0) {
+      playerInstance.load([{file:nextVid}]);
+      nextVid = "";
+    }
+  }
+});
+
+socket.on('contentChange', function (data) {
+  console.log('play next ' + data);
+  if (data == 'repeat') {
+    //do nothing as repeat is true
+    return;
+  }
+  changeVideo(data);
+});
+
+socket.on('choiceReady', function (data) {
+  // console.log('choice is ready');
+  choiceReady = true;
+});
+
+socket.emit('streamStatus', '');
+socket.on('streamStatus', function (data) {
+  console.log('stream status ' + data.streamRunning + ' : ' + data.paused);
+  if (data.paused) {
+    pause = true;
+    playerInstance.pause();
+  }
+});
+
+function changeVideo (data) {
+  // console.log(data);
+  // console.log(data);
+  names = data.split('/');
+  // console.log(data, names);
+  // console.log(names);
+  name = names[names.length - 1];
+  // console.log(name.charAt(name.length-1), name.charAt(name.length-2))
+  // if (name.charAt(name.length-2) == '_' && name.charAt(name.length-1) == '1') {
+  //   name = name.substring(0, name.length - 6);
+  // } else {
+  //   name = name.substring(0, name.length - 4);
+  // }
+  // console.log('1', name);
+  // if (name.substring(name.length-4, name.length))
+  name = name.substring(0, name.length - 4);
+  if (name.substring(name.length-2, name.length) == '_1') {
+    name = name.substring(0, name.length - 2);
+  } else {
+    console.log('old video attempted to play: ' + name);
+  }
+  name = name + ".mp4";
+  // console.log('1', name);
+  // name = name.replace('%20', ' ');
+  // name = name.split('%20').join(' ');
+  // console.log('2', name);
+  // console.log('2', name);
+  name = "/uploaded/files/" + name;
+  // changeVideo(data);
+  console.log('change video ' + name);
+
+  // name = "http://twitchodyssey.net/public/uploaded/files/Natural.mp4";
+  // name = "/uploaded/files/Natural.mp4";
+
+  // playerInstance.play(true).setVolume(100);
+  if (!pause) {
+    playerInstance.load([{file:name}]);
+    // console.log('play');
+    playerInstance.play(true).setVolume(100);
+    // console.log(playerInstance.getDuration());
+    randomSkip = true;
+    nextVid = "";
+  } else {
+    nextVid = name;
+  }
+}
+</script>
+</body>
+</html>

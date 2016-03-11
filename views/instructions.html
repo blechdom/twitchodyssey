@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="/javascripts/dropzone.js"></script>
+<script src="socket.io/socket.io.js"></script>
+<script src="/javascripts/instructions.js"></script>
+<link rel="stylesheet" href="/stylesheets/dropzone.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<style>
+@font-face {
+   font-family: myFirstFont;
+   src: url(/stylesheets/font_Caligo1.0.ttf);
+}
+div {
+   font-family: myFirstFont;
+}
+@font-face {
+   font-family: myFont;
+   src: url(/stylesheets/OpenSans-Regular.ttf);
+}
+div {
+   font-family: myFont;
+}
+
+h1 {
+    font-size: 68px;
+  font-family: myFirstFont;
+  margin-bottom: -50px;
+  margin-top: 0px;
+}
+h2 {
+    font-size: 42px;
+  font-family: myFirstFont;
+  margin-bottom:  15px;
+}
+.indent {
+	padding-left: 200px;
+}
+h3 {
+    font-size: 16px;
+  font-family: myFont;
+}
+h4 {
+  font-size: 24px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.done {
+	font-size: 24px;
+}
+</style>
+
+
+</head>
+<!-- <body background="/images/newwhite.png"> -->
+<body>
+
+<div class="row">
+	<div style="padding-left:50px">
+		<h1>Twitch Odyssey</h1>
+	</div>
+	<div style="padding-left:200px;">
+		<h2>A live stream performance, The Sirens</h2>
+	</div> 
+</div>
+<div class="row">
+	<div class="col-sm-6">
+		<div style="margin: 0px ; padding: 25px;">
+			<h3> Twitch Odyssey explores the intersection of devised theater, collaborative filmmaking and game-based online media through a contemporary adaptation of Homer&#8217s Odyssey.  The content for this performance stream is made by you, the audience/player/content maker.  It can be made anonymously, or not.  You can work alone or with family or friends. <br><br>
+
+
+Odysseus&#8217s journey is at once facilitated by the gods and by his own cunning and resolve.  Divine intervention and personal agency keeps him alive along the way and eventually gets him home. <br><br>  As Odysseus and his crew approach the island of the Sirens, Odysseus, as instructed by Circe, tells the crew to plug their ears with beeswax and has them bind him to the mast of the ship.  Such is the power of the lovely Sirens.<br><br>
+
+In this performance we will explore what is it that each of us longs for, or is drawn to?&nbsp;   What is it that pulls us <q>off course</q>?<br>
+As you participate you might consider the following: &nbsp;&nbsp;&nbsp;What shapes the direction of your day?&nbsp; What drives you?&nbsp;  What distracts you?&nbsp;   Is it something (desire, longing, lust) from within or something (expectations, accepted behavior, ideas of success, ideas identity) in the culture?&nbsp;   In The Odyssey, we learn that giving in to the Sirens brings certain death.  Do you believe that?  There is no right answer.  Just something to think about.</h3>
+		</div>
+		<div style="margin: 25px ; padding: 25 px;">
+			<h4>Instructions for making content</h4><h3>
+Here is a video clip that could become part of our performance stream:  <a href="/images/WIP Sirens.mp4" target="_blank">The Sirens</a>.<br>
+Add another clip that could go either before or after the shared clip.
+(You can drag and drop this, or upload by clicking in the box) 
+There are no rules or expectations as to what comes next, or before. 
+All the clips made will be added to the stream and during the performance the 
+audience will have a say in the order that the clips stream. Guidelines for making your 
+clip: You can repurpose other content or make something completely original. If you 
+are using someone else&#8217s content, you must modify it in someway and cite where it&#8217s 
+from.(for now email your citations to twitchodyssey@gmail.com) Maximum length 30 seconds.</h3>
+
+		</div>
+	</div>
+   	<div class="col-sm-6"><div style="padding: 20px">
+	<br><Br><br>	<form action="/upload" class="dropzone" id="my-dropzone"></form>
+		<!--<input class="fileNameInput" type="text" maxlength="14" />-->
+		<center><a href="/files" target="closeup" class="done">submit video</a></center>
+	</div></div>
+</div>
+</body>
+</html>

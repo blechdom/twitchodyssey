@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Twitch Odysser: Homer's Control Page</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="socket.io/socket.io.js"></script>
+
+<style>
+@font-face {
+   font-family: myFirstFont;
+   src: url(/stylesheets/font_Caligo1.0.ttf);
+}
+.caligo {
+   font-family: myFirstFont;
+	padding-left: 50px;
+
+}
+.paddingh3
+{
+	padding-left: 50px;
+}
+.controlOn
+{
+  position: absolute;
+  top: 35%;
+  left: 20%;
+  width: 20%;
+  height: 20%;
+  font-size: 40px;
+}
+.controlOff
+{
+  position: absolute;
+  top: 35%;
+  left: 60%;
+  width: 20%;
+  height: 20%;
+  font-size: 40px;
+}
+.start
+{
+  position: absolute;
+  top: 55%;
+  left: 20%;
+  width: 20%;
+  height: 20%;
+  font-size: 40px;
+}
+.stop
+{
+  position: absolute;
+  top: 55%;
+  left: 60%;
+  width: 20%;
+  height: 20%;
+  font-size: 40px;
+}
+@font-face {
+   font-family: myFont;
+   src: url(/stylesheets/OpenSans-Regular.ttf);
+}
+div {
+   font-family: myFont;
+}
+h1 {
+    font-size: 68px;
+  font-family: myFirstFont;
+  margin-bottom: -35px;
+  margin-top: 0px;
+}
+h2 {
+    font-size: 42px;
+  font-family: myFirstFont;
+  margin-bottom:  15px;
+  padding-left: 50px;
+}
+h3 {
+    	font-size: 28px;
+	font-family: myFont;	
+}
+h4 {
+  font-size: 38px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: myFont;
+}
+</style>
+</head>
+<button type="button" onclick="controlOn()" class="controlOn">Take Control</button>
+<button type="button" onclick="controlOff()" class="controlOff">Leave Control</button>
+<button type="button" onclick="startStream()" class="start">Start!</button>
+<button type="button" onclick="stopStream()" class="stop">Stop!</button>
+<!-- <button type="button" onclick="connect()" class="connect">Connect</button> -->
+<script>
+
+ // Initialize variables
+  var socket = io();
+
+  // socket.on('jwplayerVideo', function (data) {
+  //   changeVideo(data);
+  // });
+
+  // console.log(socket);
+  function controlOn() {
+    console.log('take control');
+    socket.emit('controlOn', 'on');
+    // socket.emit('connect', 'connect');
+  }
+
+  function controlOff() {
+    console.log('leave control');
+    socket.emit('controlOff', 'off');
+  }
+
+  function startStream() {
+    console.log('start stream');
+    socket.emit('changeStream', 'start');
+  }
+
+  function stopStream() {
+    console.log('stop stream');
+    socket.emit('changeStream', 'stop');
+  }
+
+  // function connect() {
+  //   console.log('connect');
+  //   socket.emit('connect', 'connect');
+  // }
+
+  socket.on('connected', function (data) {
+    console.log('connected');
+  });
+
+</script>
+</body>
+</html>

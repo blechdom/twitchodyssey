@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 	// fs.readdir(__dirname + '/../public/uploaded/files', function (err, files) {
        fs.readdir(__dirname + '/../public/thumbnails', function (err, files) {
                 if (err) throw err;
-                console.log(files);
+                // console.log(files);
         	res.render('index', { title: 'Twitch Odyssey', files: files });
 	});
 });
@@ -17,21 +17,21 @@ router.get('/', function(req, res, next) {
 router.get('/files', function (req, res) {
   	fs.readdir(__dirname + '/../public/uploaded/files', function (err, files) {
   		if (err) throw err;
-             	console.log(files);
+             	// console.log(files);
                 res.render('files.html', {files: files });
         });
 });
 router.get('/content', function (req, res) {
         fs.readdir(__dirname + '/../public/uploaded/files', function (err, files) {
                 if (err) throw err;
-                console.log(files);
+                // console.log(files);
                 res.render('content.html', {files: files });
         });
 });
 router.get('/homer', function (req, res) {
         fs.readdir(__dirname + '/../public/uploaded/files', function (err, files) {
                 if (err) throw err;
-                console.log(files);
+                // console.log(files);
                 res.render('homer.html', {files: files });
         });
 });
@@ -53,7 +53,7 @@ router.get('/theatre', function (req, res) {
 router.get('/chat', function (req, res) {
         fs.readdir(__dirname + '/../public/uploaded/files', function (err, files) {
                 if (err) throw err;
-                console.log(files);
+                // console.log(files);
                 res.render('chat.html', {files: files });
         });
 });
@@ -61,8 +61,16 @@ router.get('/chat', function (req, res) {
 router.get('/streamOnly', function (req, res) {
         fs.readdir(__dirname + '/../public/uploaded/files', function (err, files) {
                 if (err) throw err;
-                console.log(files);
+                // console.log(files);
                 res.render('streamOnly.html', {files: files });
+        });
+});
+
+router.get('/mobile', function (req, res) {
+        fs.readdir(__dirname + '/../public/thumbnails', function (err, files) {
+                if (err) throw err;
+                // console.log(files);
+                res.render('mobile.html', {files: files });
         });
 });
 

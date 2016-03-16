@@ -229,17 +229,16 @@ height: 50%;
 }
 
 /* Input */
-
 .inputMessage {
   border: 10px solid #000;
   bottom: 0;
-  left: 0;
+  left: -10px;
   right: 0;
   outline: none;
-  padding-left: 10px;
-  position: absolute;
+  padding-left: 0px;
+  position: relative;
   width: 100%;
-  height: 60px;
+  //height: 60px;
 }
 .meter > span:after, .animate > span > span {
   content: "";

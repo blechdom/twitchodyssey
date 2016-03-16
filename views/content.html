@@ -90,7 +90,7 @@ playerInstance.onComplete(function() {
 });
 
 playerInstance.onTime(function() {
-  // console.log('time');
+  console.log(randomSkip, elapsed, choiceReady);
   if (randomSkip) {
     // start random
     var time = playerInstance.getDuration();
